@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/styles.css">
+    <title>tic-tac-toe</title>
+</head>
+<body>
+
+    <header>
+        <h1 id="logo">TiC-TaC-ToE</h1>
+    </header>
+    <div id="main-block">
+        <div id="form">
+            <div class="inputs"><input type="text" name="firstPlayer" placeholder="first player" id="fp"><p id="attentionFp"></p></div>
+            <div class="inputs"><input type="text" name="secondPlayer" placeholder="second player" id="sp"><p id="attentionSp"></p></div>
+            
+            <input type="button" class="button-play button" value="play">
+        </div>
+        
+        <div id="platform">
+            <div id="block-info-and-reset">
+                <input type="button" class="button-reset button" value="reset">
+                <h2 id="congratulation"></h2>
+            </div>
+            
+            <canvas id="canvas" width="333" height="333"></canvas>
+            <div class="columns">
+                <div class="column">
+                    <div class="placeholder ph1"></div>
+                    <div class="placeholder ph2"></div>
+                    <div class="placeholder ph3"></div>
+                </div>
+                <div class="column">
+                    <div class="placeholder ph4"></div>
+                    <div class="placeholder ph5"></div>
+                    <div class="placeholder ph6"></div>
+                </div>
+                <div class="column">
+                    <div class="placeholder ph7"></div>
+                    <div class="placeholder ph8"></div>
+                    <div class="placeholder ph9"></div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+</html>
