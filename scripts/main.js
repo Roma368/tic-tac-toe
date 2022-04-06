@@ -1,4 +1,3 @@
-
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 var getStep = 0;
@@ -10,8 +9,10 @@ var gaps = {
     first: undefined,
     second: undefined,
 };
-var isPlayed = false;
-
+var howManyTimesWins = {
+    firstPlayer: 0,
+    secondPlayer: 0,
+};
 
 var  placeholders = {
     ph0: undefined,
@@ -24,9 +25,9 @@ var  placeholders = {
     ph7: undefined,
     ph8: undefined,
     ph9: undefined,
-}
+};
 
-var arrKeys = Object.keys(placeholders)
+var arrKeys = Object.keys(placeholders);
 
 function cross (x, y) {
     ctx.lineWidth = 8;
@@ -50,16 +51,17 @@ function circle(x, y){
 }
 
 function putInPlaceHoledrValue (v, x, y){
+    if(getStep == 3){
+        return
+    }
     if (getStep == 0){
         cross(x, y)
         getStep = 1
         placeholders[arrKeys[v]] = getStep
-        console.log(placeholders[arrKeys[v]], getStep)
     } else if(getStep == 1){
         if(placeholders[arrKeys[v]] == undefined){
             getStep = 2
             placeholders[arrKeys[v]] = getStep
-            console.log(placeholders[arrKeys[v]], getStep)
         } else{
             return
         }
@@ -68,7 +70,6 @@ function putInPlaceHoledrValue (v, x, y){
         if(placeholders[arrKeys[v]] == undefined){
             getStep = 1
             placeholders[arrKeys[v]] = getStep
-            console.log(placeholders[arrKeys[v]], getStep)
         } else {
             return
         }
@@ -100,23 +101,30 @@ function isSecondtName(){
 
 function isWin (a, b ,c){
     if(placeholders[arrKeys[a]] == 1 && placeholders[arrKeys[b]] == 1 && placeholders[arrKeys[c]] == 1){
+        getStep = 3
         win = 'win ' + firstName
+        howManyTimesWins.firstPlayer += 1
+        document.getElementById('player1').innerHTML = firstName + ' has won: ' + howManyTimesWins.firstPlayer
         document.getElementById('congratulation').innerHTML = win
     } else if(placeholders[arrKeys[a]] == 2 && placeholders[arrKeys[b]] == 2 && placeholders[arrKeys[c]] == 2){
+        getStep = 3
         win = 'win ' + secondName
+        howManyTimesWins.secondPlayer += 1
+        document.getElementById('player2').innerHTML = secondName + ' has won: ' + howManyTimesWins.secondPlayer
         document.getElementById('congratulation').innerHTML = win
     }
 }
 
-function played(){
-    if (win !== undefined){
-        return isPlayed = true
+function isDraw (a, b, c, d, e, f, g, h, j){
+    if(placeholders[arrKeys[a]] !== undefined && placeholders[arrKeys[b]] !== undefined && placeholders[arrKeys[c]] !== undefined && placeholders[arrKeys[d]] !== undefined && placeholders[arrKeys[e]] !== undefined && placeholders[arrKeys[f]] !== undefined && placeholders[arrKeys[g]] !== undefined && placeholders[arrKeys[h]] !== undefined && placeholders[arrKeys[j]] !== undefined){
+        win = 'draw'
+        document.getElementById('congratulation').innerHTML = win
     }
 }
-
 
 $('div.ph1').click(function () {
     putInPlaceHoledrValue(1, 55.5, 55.5)
+    isDraw(1,2,3,4,5,6,7,8,9)
     isWin(1,2,3)
     isWin(1,5,9)
     isWin(1,4,7)
@@ -124,12 +132,14 @@ $('div.ph1').click(function () {
 
 $('div.ph2').click(function () {
     putInPlaceHoledrValue(2, 166.5, 55.5)
+    isDraw(1,2,3,4,5,6,7,8,9)
     isWin(1,2,3)
     isWin(2,5,8)
 })
 
 $('div.ph3').click(function () {
     putInPlaceHoledrValue(3, 277.5, 55)
+    isDraw(1,2,3,4,5,6,7,8,9)
     isWin(1,2,3)
     isWin(3,5,7)
     isWin(3,6,9)
@@ -137,12 +147,14 @@ $('div.ph3').click(function () {
 
 $('div.ph4').click(function () {
     putInPlaceHoledrValue(4, 55.5, 166.5)
+    isDraw(1,2,3,4,5,6,7,8,9)
     isWin(4,5,6)
     isWin(1,4,7)
 })
 
 $('div.ph5').click(function () {
     putInPlaceHoledrValue(5, 166.5, 166.5)
+    isDraw(1,2,3,4,5,6,7,8,9)
     isWin(4,5,6)
     isWin(2,5,8)
     isWin(3,5,7)
@@ -150,6 +162,7 @@ $('div.ph5').click(function () {
 
 $('div.ph6').click(function () {
     putInPlaceHoledrValue(6, 277.5, 166.5)
+    isDraw(1,2,3,4,5,6,7,8,9)
     isWin(4,5,6)
     isWin(3,6,9)
 
@@ -157,26 +170,28 @@ $('div.ph6').click(function () {
 
 $('div.ph7').click(function () {
     putInPlaceHoledrValue(7, 55.5, 277.5)
-    isWin(7,8,8)
+    isDraw(1,2,3,4,5,6,7,8,9)
+    isWin(7,8,9)
     isWin(1,4,7)
     isWin(3,5,7)
 })
 
 $('div.ph8').click(function () {
     putInPlaceHoledrValue(8, 166.5, 277.5)
-    isWin(7,8,8)
+    isDraw(1,2,3,4,5,6,7,8,9)
+    isWin(7,8,9)
     isWin(2,5,8)
 })
 
 $('div.ph9').click(function () {
     putInPlaceHoledrValue(9, 277.5, 277.5)
+    isDraw(1,2,3,4,5,6,7,8,9)
     isWin(7,8,8)
     isWin(3,6,9)
     isWin(1,5,9)
 })
 
 $('.button-play').click(function (){
-    document.getElementsByClassName('button-play').display = "none";
     isFirstName()
     isSecondtName()
     if(gaps.first == 1 || gaps.second == 1){
@@ -185,6 +200,13 @@ $('.button-play').click(function (){
         document.getElementById("platform").style.display = "block";
         document.getElementById("platform").style.opacity = "1";
     }
+    document.getElementById('fp').style.display = 'none'
+    document.getElementById('sp').style.display = 'none'
+    document.getElementById('button-to-play').style.display = 'none'
+    document.getElementById('player1').style.display = 'block'
+    document.getElementById('player1').innerHTML = firstName + ' has won: ' + howManyTimesWins.firstPlayer
+    document.getElementById('player2').style.display = 'block'
+    document.getElementById('player2').innerHTML = secondName + ' has won: ' + howManyTimesWins.secondPlayer
 })
 
 $('.button-reset').click(function (){

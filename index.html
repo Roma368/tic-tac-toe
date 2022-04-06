@@ -14,18 +14,22 @@
     </header>
     <div id="main-block">
         <div id="form">
-            <div class="inputs"><input type="text" name="firstPlayer" placeholder="first player" id="fp"><p id="attentionFp"></p></div>
-            <div class="inputs"><input type="text" name="secondPlayer" placeholder="second player" id="sp"><p id="attentionSp"></p></div>
-            
-            <input type="button" class="button-play button" value="play">
-        </div>
-        
-        <div id="platform">
-            <div id="block-info-and-reset">
-                <input type="button" class="button-reset button" value="reset">
-                <h2 id="congratulation"></h2>
+            <div class="inputs"><input type="text" name="firstPlayer" placeholder="first player" id="fp">
+                <p class="player-stats" id="player1"></p>
+                <p id="attentionFp"></p>
+            </div>
+            <div class="inputs"><input type="text" name="secondPlayer" placeholder="second player" id="sp">
+                <p class="player-stats" id="player2"></p>
+                <p id="attentionSp"></p>
             </div>
             
+            <input type="button" class="button-play button" value="play" id="button-to-play">
+        </div>
+        <div id="platform">
+            <div id="block-info-and-reset">
+                <input type="button" class="button-reset button" value="again">
+                <h2 id="congratulation"></h2>
+            </div>
             <canvas id="canvas" width="333" height="333"></canvas>
             <div class="columns">
                 <div class="column">
@@ -44,10 +48,8 @@
                     <div class="placeholder ph9"></div>
                 </div>
             </div>
-            
         </div>
     </div>
-    
     <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
     <script src="scripts/main.js"></script>
 </body>
