@@ -60,10 +60,17 @@ header{
     margin: auto 0 auto 2px;
 }
 
+.player-stats{
+    font-size: 18px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 .button{
     height: 25px;
-    width: 50px;
+    width: 60px;
     transition: 0.5s;
+    font-size: 14px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .button:hover{
@@ -135,4 +142,8 @@ input{
 .placeholder:hover{
     opacity: 0.5;
     background-color: rgb(144, 145, 144);
+}
+
+#whose-turn{
+    margin: 20px 10px;
 }

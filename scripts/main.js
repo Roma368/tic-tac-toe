@@ -29,6 +29,8 @@ var  placeholders = {
 
 var arrKeys = Object.keys(placeholders);
 
+
+
 function cross (x, y) {
     ctx.lineWidth = 8;
     ctx.beginPath();
@@ -58,10 +60,12 @@ function putInPlaceHoledrValue (v, x, y){
         cross(x, y)
         getStep = 1
         placeholders[arrKeys[v]] = getStep
+        whoseTurn(secondName)
     } else if(getStep == 1){
         if(placeholders[arrKeys[v]] == undefined){
             getStep = 2
             placeholders[arrKeys[v]] = getStep
+            whoseTurn(firstName)
         } else{
             return
         }
@@ -70,6 +74,7 @@ function putInPlaceHoledrValue (v, x, y){
         if(placeholders[arrKeys[v]] == undefined){
             getStep = 1
             placeholders[arrKeys[v]] = getStep
+            whoseTurn(secondName)
         } else {
             return
         }
@@ -103,6 +108,7 @@ function isWin (a, b ,c){
     if(placeholders[arrKeys[a]] == 1 && placeholders[arrKeys[b]] == 1 && placeholders[arrKeys[c]] == 1){
         getStep = 3
         win = 'win ' + firstName
+        document.getElementById('whose-turn').innerHTML = ''
         howManyTimesWins.firstPlayer += 1
         document.getElementById('player1').innerHTML = firstName + ' has won: ' + howManyTimesWins.firstPlayer
         document.getElementById('congratulation').innerHTML = win
@@ -120,6 +126,10 @@ function isDraw (a, b, c, d, e, f, g, h, j){
         win = 'draw'
         document.getElementById('congratulation').innerHTML = win
     }
+}
+
+function whoseTurn (a){
+    document.getElementById('whose-turn').innerHTML = 'now move ' + a
 }
 
 $('div.ph1').click(function () {
@@ -192,8 +202,10 @@ $('div.ph9').click(function () {
 })
 
 $('.button-play').click(function (){
+    getStep = 0;
     isFirstName()
     isSecondtName()
+    whoseTurn(firstName)
     if(gaps.first == 1 || gaps.second == 1){
         return
     } else if (gaps.first == 0 || gaps.second == 0){
@@ -210,6 +222,7 @@ $('.button-play').click(function (){
 })
 
 $('.button-reset').click(function (){
+    whoseTurn(firstName)
     document.getElementById('congratulation').innerHTML = ''
     for(let i = 0; i < arrKeys.length; i++){
         placeholders[arrKeys[i]] = undefined
