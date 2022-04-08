@@ -33,6 +33,7 @@ var arrKeys = Object.keys(placeholders);
 
 function cross (x, y) {
     ctx.lineWidth = 8;
+    ctx.color = red;
     ctx.beginPath();
     ctx.moveTo(x, y);
     ctx.lineTo(x + 30, y + 30);
@@ -196,7 +197,7 @@ $('div.ph8').click(function () {
 $('div.ph9').click(function () {
     putInPlaceHoledrValue(9, 277.5, 277.5)
     isDraw(1,2,3,4,5,6,7,8,9)
-    isWin(7,8,8)
+    isWin(7,8,9)
     isWin(3,6,9)
     isWin(1,5,9)
 })
