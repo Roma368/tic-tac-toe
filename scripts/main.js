@@ -29,11 +29,8 @@ var  placeholders = {
 
 var arrKeys = Object.keys(placeholders);
 
-
-
 function cross (x, y) {
     ctx.lineWidth = 8;
-    ctx.color = red;
     ctx.beginPath();
     ctx.moveTo(x, y);
     ctx.lineTo(x + 30, y + 30);
